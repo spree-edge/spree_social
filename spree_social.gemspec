@@ -35,4 +35,5 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'deface', '~> 1.0'
 
   s.add_development_dependency 'spree_dev_tools'
+  s.add_dependency 'multi_json', '~> 1.0'
 end
