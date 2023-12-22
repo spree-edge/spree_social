@@ -1,6 +1,8 @@
 module Spree
   module Admin
     class AuthenticationMethodsController < ResourceController
+      include EnsureAuthSocial
+
       create.after :update_oauth_method
       update.after :update_oauth_method
 

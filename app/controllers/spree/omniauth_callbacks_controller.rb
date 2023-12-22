@@ -1,4 +1,5 @@
 class Spree::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+  include EnsureAuthSocial
   include Spree::Core::ControllerHelpers::Common
   include Spree::Core::ControllerHelpers::Order
   include Spree::Core::ControllerHelpers::Auth

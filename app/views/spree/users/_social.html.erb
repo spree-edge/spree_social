@@ -1,4 +1,4 @@
-<% if Spree::AuthenticationMethod.active_authentication_methods? %>
+<% if Spree::AuthenticationMethod.active_authentication_methods? && Flipper.enabled?(:auth_social) %>
   <% @body_id = 'login' %>
   <div id="existing-customer">
     <% if spree_current_user.user_authentications %>
