@@ -34,31 +34,6 @@ module SpreeSocial
 
     config.to_prepare(&method(:activate).to_proc)
   end
-
-  # Setup all OAuth providers
-  def self.init_provider(provider)
-    begin
-      ActiveRecord::Base.connection_pool.with_connection(&:active?)
-    rescue
-      return
-    end
-
-    return unless ActiveRecord::Base.connection.data_source_exists?('spree_authentication_methods')
-    key, secret = nil
-    Spree::AuthenticationMethod.where(environment: ::Rails.env).each do |auth_method|
-      next unless auth_method.provider == provider
-      key = auth_method.api_key
-      secret = auth_method.api_secret
-      Rails.logger.info("[Spree Social] Loading #{auth_method.provider.capitalize} as authentication source")
-    end
-    setup_key_for(provider.to_sym, key, secret)
-  end
-
-  def self.setup_key_for(provider, key, secret)
-    Devise.setup do |config|
-      config.omniauth provider, key, secret, setup: true, info_fields: 'email, name'
-    end
-  end
 end
 
 module OmniAuth
