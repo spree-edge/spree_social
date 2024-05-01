@@ -4,10 +4,6 @@ module SpreeSocial
       source_root(File.expand_path(File.dirname(__FILE__)))
       class_option :auto_run_migrations, type: :boolean, default: false
 
-      def copy_initializer
-        copy_file 'custom_omniauth_config.rb', 'config/initializers/custom_omniauth_config.rb'
-      end
-
       def add_stylesheets
         inject_into_file 'vendor/assets/stylesheets/spree/frontend/all.css', " *= require spree/frontend/spree_social\n", before: /\*\//, verbose: true
       end
