@@ -2,17 +2,15 @@ module SpreeSocial
   module Spree
     module UserRegistrationsControllerDecorator
       def self.prepend(base)
-        base.after_action :clear_omniauth, only: :create, if: -> { Flipper.enabled?(:auth_social)}
+        base.after_action :clear_omniauth, only: :create
       end
 
       private
 
       def build_resource(*args)
         super
-        if Flipper.enabled?(:auth_social)
-          @spree_user.apply_omniauth(session[:omniauth]) if session[:omniauth]
-          @spree_user
-        end
+        @spree_user.apply_omniauth(session[:omniauth]) if session[:omniauth]
+        @spree_user
       end
 
       def clear_omniauth

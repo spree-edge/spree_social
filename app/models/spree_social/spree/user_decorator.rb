@@ -14,6 +14,7 @@ module SpreeSocial
         if skip_signup_providers.include? omniauth['provider']
           self.email = omniauth['info']['email'] if email.blank?
         end
+        self.email = omniauth['info']['email'] if omniauth['provider'] == 'github'
         user_authentications.build(provider: omniauth['provider'], uid: omniauth['uid'])
       end
 

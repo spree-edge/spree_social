@@ -1,7 +1,7 @@
 module Spree
   module UsersControllerDecorator
     def self.prepended(base)
-      base.before_action :set_spree_users, only: :show, if: -> { Flipper.enabled?(:auth_social)}
+      base.before_action :set_spree_users, only: :show
     end
 
     private

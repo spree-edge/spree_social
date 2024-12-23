@@ -1,5 +1,4 @@
 class Spree::UserAuthenticationsController < Spree::BaseController
-  include EnsureAuthSocial
 
   def index
     @authentications = spree_current_user.user_authentications if spree_current_user
